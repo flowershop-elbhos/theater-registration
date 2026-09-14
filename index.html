@@ -129,7 +129,8 @@ document.getElementById("theaterForm").addEventListener("submit", function(event
         "https://wa.me/201103818557?text=" +
         encodeURIComponent(message);
 
-    window.open(whatsappURL, "_blank");
+alert("تم تسجيل البيانات، جاري فتح واتساب...");
+window.location.href = whatsappURL;
 });
 </script>
 </body>

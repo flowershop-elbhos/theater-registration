@@ -126,13 +126,18 @@ document.getElementById("theaterForm").addEventListener("submit", function(event
         "الخبرة السابقة: " + (experience || "لا يوجد") + "\n" +
         "ملاحظات اللجنة: " + (notes || "لا يوجد") + "\n" +
         "نتيجة الاختبار: " + (result || "لم تحدد بعد");
-    // رقم واتساب
-    const whatsappNumber = "201103818557";
-    // فتح واتساب بالرسالة
-    const whatsappURL =
-        "https://wa.me/" + whatsappNumber +
-        "?text=" + encodeURIComponent(message);
-    window.open(whatsappURL, "_blank");
+    // ضع رقم الواتساب الذي ستستقبل عليه بيانات المتقدمين للمسرح هنا
+// يجب أن يبدأ بكود الدولة بدون علامة + (مثلاً 20 لمصر متبوعاً بالرقم)
+const whatsappNumber = "201103818557"; 
+
+// تحويل النص لصيغة مدعومة في الروابط لتفادي أي أخطاء في المسافات أو الرموز
+const encodedMessage = encodeURIComponent(message);
+
+// إنشاء الرابط النهائي
+const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+// فتح واتساب في نافذة جديدة لإرسال الرسالة
+window.open(whatsappURL, "_blank");
     // تفريغ الفورم
     this.reset();
 });

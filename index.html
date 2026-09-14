@@ -63,43 +63,92 @@
     <form id="theaterForm">
         <label>الاسم بالكامل</label>
         <input type="text" id="name" required>
+        
         <label>السن</label>
         <input type="number" id="age" min="5" max="100" required>
+        
         <label>المدرسة</label>
         <input type="text" id="school" required>
+        
         <label>المرحلة الدراسية</label>
         <select id="stage" required>
             <option value="">اختر المرحلة</option>
-            <option>ابتدائي</option>
-            <option>إعدادي</option>
-            <option>ثانوي</option>
+            <option value="ابتدائي">ابتدائي</option>
+            <option value="إعدادي">إعدادي</option>
+            <option value="ثانوي">ثانوي</option>
         </select>
+        
         <label>الصف الدراسي</label>
         <select id="grade" required>
-            <option value="">اختر الصف</option>
-            <option>الصف الأول</option>
-            <option>الصف الثاني</option>
-            <option>الصف الثالث</option>
-            <option>الصف الرابع</option>
-            <option>الصف الخامس</option>
-            <option>الصف السادس</option>
+            <option value="">اختر المرحلة أولاً</option>
         </select>
+        
         <label>رقم الهاتف</label>
         <input type="tel" id="phone" required>
+        
         <label>نوع الاختبار</label>
         <select id="testType" required>
             <option value="">اختر نوع الاختبار</option>
             <option>تمثيل</option>
             <option>استعراض</option>
         </select>
-        <label>الخبرة السابقة (ان وجدت)</label>
+        
+        <label>الخبرة السابقة (إن وجدت)</label>
         <textarea id="experience" placeholder="اكتب أي خبرات سابقة في المسرح..."></textarea>
-        <label>مواهب اخري (ان وجدت)</label>
+        
+        <label>مواهب أخرى (إن وجدت)</label>
         <textarea id="notes"></textarea>
+        
         <button type="submit">تسجيل البيانات</button>
     </form>
 </div>
- <script>
+
+<script>
+// تحديد الصفوف بناءً على المرحلة
+const gradesByStage = {
+    "ابتدائي": [
+        "الصف الأول",
+        "الصف الثاني",
+        "الصف الثالث",
+        "الصف الرابع",
+        "الصف الخامس",
+        "الصف السادس"
+    ],
+    "إعدادي": [
+        "الصف الأول",
+        "الصف الثاني",
+        "الصف الثالث"
+    ],
+    "ثانوي": [
+        "الصف الأول",
+        "الصف الثاني",
+        "الصف الثالث"
+    ]
+};
+
+const stageSelect = document.getElementById("stage");
+const gradeSelect = document.getElementById("grade");
+
+// تحديث قائمة الصفوف عند تغيير المرحلة
+stageSelect.addEventListener("change", function() {
+    const selectedStage = this.value;
+    
+    // تفريغ القائمة الحالية
+    gradeSelect.innerHTML = '<option value="">اختر الصف</option>';
+    
+    if (selectedStage && gradesByStage[selectedStage]) {
+        gradesByStage[selectedStage].forEach(function(grade) {
+            const option = document.createElement("option");
+            option.value = grade;
+            option.textContent = grade;
+            gradeSelect.appendChild(option);
+        });
+    } else {
+        gradeSelect.innerHTML = '<option value="">اختر المرحلة أولاً</option>';
+    }
+});
+
+// التعامل مع إرسال النموذج
 document.getElementById("theaterForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -129,8 +178,8 @@ document.getElementById("theaterForm").addEventListener("submit", function(event
         "https://wa.me/201103818557?text=" +
         encodeURIComponent(message);
 
-alert("تم تسجيل البيانات، جاري فتح واتساب...");
-window.location.href = whatsappURL;
+    alert("تم تسجيل البيانات، جاري فتح واتساب...");
+    window.location.href = whatsappURL;
 });
 </script>
 </body>

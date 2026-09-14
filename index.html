@@ -102,38 +102,7 @@
 <script>
 document.getElementById("theaterForm").addEventListener("submit", function(event) {
     event.preventDefault();
-    // قراءة البيانات من الفورم
-    const name = document.getElementById("name").value;
-    const age = document.getElementById("age").value;
-    const school = document.getElementById("school").value;
-    const stage = document.getElementById("stage").value;
-    const grade = document.getElementById("grade").value;
-    const phone = document.getElementById("phone").value;
-    const testType = document.getElementById("testType").value;
-    const experience = document.getElementById("experience").value;
-    const notes = document.getElementById("notes").value;
-    const result = document.getElementById("result").value;
-    // الرسالة التي ستظهر في واتساب
-    const message =
-        "🎭 تسجيل جديد لاختبارات المسرح\n\n" +
-        "الاسم: " + name + "\n" +
-        "السن: " + age + "\n" +
-        "المدرسة: " + school + "\n" +
-        "المرحلة: " + stage + "\n" +
-        "الصف: " + grade + "\n" +
-        "رقم الهاتف: " + phone + "\n" +
-        "نوع الاختبار: " + testType + "\n" +
-        "الخبرة السابقة: " + (experience || "لا يوجد") + "\n" +
-        "ملاحظات اللجنة: " + (notes || "لا يوجد") + "\n" +
-        "نتيجة الاختبار: " + (result || "لم تحدد بعد");
-    // رقم واتساب
-    const whatsappNumber = "201103818557";
-    // فتح واتساب بالرسالة
-    const whatsappURL =
-        "https://wa.me/" + whatsappNumber +
-        "?text=" + encodeURIComponent(message);
-    window.open(whatsappURL, "_blank");
-    // تفريغ الفورم
+    alert("تم تسجيل بيانات الاختبار بنجاح");
     this.reset();
 });
 </script>
